@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  indexer:
+    # This service builds the knowledge base. It runs once and then exits.
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: ["python", "indexing.py"]
+    volumes:
+      # Mount the local data directory into the container
+      - ./data:/app/data:ro
+      # Mount a volume to persist the ChromaDB database
+      - chroma_db_volume:/app/chroma_db
+    networks:
+      - app-network
+
+  backend:
+    # This service runs the FastAPI backend API.
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the persisted ChromaDB database
+      - chroma_db_volume:/app/chroma_db:ro
+    environment:
+      # Pass the LLM_MODEL_PATH from a .env file or the host environment
+      - LLM_MODEL_PATH=${LLM_MODEL_PATH:-}
+    networks:
+      - app-network
+    depends_on:
+      indexer:
+        condition: service_completed_successfully
+
+  frontend:
+    # This service runs the Streamlit frontend UI.
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+volumes:
+  chroma_db_volume:
+    # Define a named volume to persist the vector database.
+    # This ensures the data isn't lost when containers are removed.
+
+networks:
+  app-network:
+    driver: bridge

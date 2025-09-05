@@ -1,0 +1,16 @@
+**Auto Insurance Underwriting Guidelines**
+
+**1. Driver Eligibility**
+   - All drivers must have a valid driver's license.
+   - Drivers with more than two at-fault accidents in the last three years are considered high-risk.
+   - A DUI conviction within the last five years will result in policy ineligibility.
+
+**2. Vehicle Eligibility**
+   - High-performance sports cars and exotic vehicles require special approval.
+   - Vehicles with a salvage title are not eligible for comprehensive or collision coverage.
+   - All vehicles must meet state safety standards.
+
+**3. Premium Tiers**
+   - **Preferred Tier:** Excellent driving record, no at-fault accidents in 5 years.
+   - **Standard Tier:** Good driving record, no more than one at-fault accident in 3 years.
+   - **High-Risk Tier:** More than one at-fault accident in 3 years or major violations. Premium surcharges apply.
