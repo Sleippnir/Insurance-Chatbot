@@ -4,20 +4,21 @@ FROM python:3.11-slim
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements file from the project root into the container
-# This requires the build context to be set to the parent directory.
-COPY ../requirements.txt .
+# Install build tools needed for compiling Python packages like llama-cpp-python
+# Using --no-install-recommends reduces the image size by skipping optional packages.
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential
 
-# Install any needed packages specified in requirements.txt
-# Using --no-cache-dir reduces the image size.
+# Copy the backend-specific requirements file
+COPY backend/requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the backend application code into the container
-COPY . .
+# Copy the backend application code from the 'backend' subdirectory
+COPY backend/ .
 
 # Expose port 8000 for the FastAPI application
 EXPOSE 8000
 
 # The command to run the application using uvicorn
-# The host 0.0.0.0 makes the server accessible from outside the container.
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -4,14 +4,14 @@ FROM python:3.11-slim
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements file from the project root
-COPY ../requirements.txt .
+# Copy the frontend-specific requirements file
+COPY frontend/requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the frontend application code into the container
-COPY . .
+# Copy the frontend application code from the 'frontend' subdirectory
+COPY frontend/ .
 
 # Expose port 8501 for the Streamlit application
 EXPOSE 8501

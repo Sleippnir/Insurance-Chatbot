@@ -1,16 +1,18 @@
-version: '3.8'
+# This version attribute is obsolete and can be removed.
+# version: '3.8'
 
 services:
   indexer:
     # This service builds the knowledge base. It runs once and then exits.
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/Dockerfile
     command: ["python", "indexing.py"]
     volumes:
-      # Mount the local data directory into the container
+      # Mount the local data directory into the container.
+      # The indexing script in the container needs to read from here.
       - ./data:/app/data:ro
-      # Mount a volume to persist the ChromaDB database
+      # Mount a volume to persist the ChromaDB database.
       - chroma_db_volume:/app/chroma_db
     networks:
       - app-network
@@ -18,15 +20,15 @@ services:
   backend:
     # This service runs the FastAPI backend API.
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      # Mount the persisted ChromaDB database
+      # Mount the persisted ChromaDB database (read-only).
       - chroma_db_volume:/app/chroma_db:ro
     environment:
-      # Pass the LLM_MODEL_PATH from a .env file or the host environment
+      # Pass the LLM_MODEL_PATH from a .env file or the host environment.
       - LLM_MODEL_PATH=${LLM_MODEL_PATH:-}
     networks:
       - app-network
@@ -37,8 +39,8 @@ services:
   frontend:
     # This service runs the Streamlit frontend UI.
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: frontend/Dockerfile
     ports:
       - "8501:8501"
     networks:

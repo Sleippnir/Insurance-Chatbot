@@ -5,7 +5,7 @@ from haystack.components.converters import TextFileToDocument
 from haystack.components.preprocessors import DocumentSplitter
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
 from haystack.components.writers import DocumentWriter
-from haystack_chroma import ChromaDocumentStore
+from chroma_haystack import ChromaDocumentStore
 
 def run_indexing_pipeline():
     """

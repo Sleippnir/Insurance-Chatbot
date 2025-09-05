@@ -7,8 +7,8 @@ from haystack import Pipeline
 from haystack.components.builders import PromptBuilder
 from haystack.components.embedders import SentenceTransformersTextEmbedder
 from haystack.components.generators.llama_cpp import LlamaCppGenerator
-from haystack_chroma import ChromaDocumentStore
-from haystack_chroma.retriever import ChromaQueryTextRetriever
+from chroma_haystack import ChromaDocumentStore
+from chroma_haystack.retriever import ChromaQueryTextRetriever
 
 # --- Haystack RAG Pipeline Setup ---
 

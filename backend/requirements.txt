@@ -1,0 +1,12 @@
+haystack-ai
+fastapi
+uvicorn[standard]
+pypdf
+sentence-transformers
+# llama-cpp-python is temporarily removed to avoid build timeouts in this environment.
+# In a production setup, this line should be re-enabled.
+# llama-cpp-python
+PyMuPDF
+python-dotenv
+requests
+chroma-haystack
