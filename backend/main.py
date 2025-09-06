@@ -69,21 +69,24 @@ def build_rag_pipeline():
 
 # --- FastAPI Application ---
 
-app = FastAPI(
-    title="Insurance Policy Generation Chatbot API",
-    description="An API for generating insurance policies using a RAG pipeline.",
-    version="1.0.0",
-)
+import contextlib
 
-@app.on_event("startup")
-def startup_event():
+@contextlib.asynccontextmanager
+async def lifespan(app):
     """
     Initializes the RAG pipeline when the FastAPI application starts.
     """
     global rag_pipeline
     rag_pipeline = build_rag_pipeline()
     print("RAG pipeline built successfully.")
+    yield
 
+app = FastAPI(
+    title="Insurance Policy Generation Chatbot API",
+    description="An API for generating insurance policies using a RAG pipeline.",
+    version="1.0.0",
+    lifespan=lifespan,
+)
 class PolicyRequest(BaseModel):
     query: str
 
