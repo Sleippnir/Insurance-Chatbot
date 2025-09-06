@@ -1,0 +1,23 @@
+**Standard Auto Insurance Policy Template**
+
+**Policy Number:** [Policy Number]
+**Effective Date:** [Date]
+**Expiration Date:** [Date]
+
+**1. Declarations Page**
+   - **Named Insured:** [Insured Name]
+   - **Address:** [Insured Address]
+   - **Vehicle Information:** [Year, Make, Model, VIN]
+   - **Coverage Selections:**
+     - Bodily Injury Liability: [Limit]
+     - Property Damage Liability: [Limit]
+     - Collision: [Deductible]
+     - Comprehensive: [Deductible]
+
+**2. Coverage Agreements**
+   - The insurer agrees to pay for losses as defined in the policy.
+   - Coverage is provided for the vehicle listed in the declarations.
+
+**3. Exclusions**
+   - Intentional acts are not covered.
+   - Use of the vehicle for commercial purposes without a commercial endorsement is excluded.
