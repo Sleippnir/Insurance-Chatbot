@@ -1,4 +1,4 @@
-<<<<<<< Test-Branch
+
 # Insurance Policy Generation Chatbot
 
 This is a full-stack application that uses a Retrieval-Augmented Generation (RAG) pipeline to generate insurance policies based on user queries. This project is built with a modern Python stack and is fully containerized for easy deployment.
@@ -70,7 +70,4 @@ This is a full-stack application that uses a Retrieval-Augmented Generation (RAG
 │   ├── app.py
 │   └── requirements.txt
 └── docker-compose.yml  # Orchestrates all the services
-```
-=======
 
->>>>>>> main
